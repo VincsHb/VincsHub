@@ -1,0 +1,130 @@
+repeat wait() until game:IsLoaded()
+wait(1)
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Vincs Hub - Pop It Trading", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroEnabled = true})
+
+OrionLib:MakeNotification({
+	Name = "Vincs Hub Loaded!",
+	Content = "Pop It Trading",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = MainTab:AddSection({
+	Name = "Trading"
+})
+
+MainTab:AddToggle({
+	Name = "Value XRay (Broken)",
+	Default = false,
+	Callback = function(Value)
+		print("Broken")
+	end    
+})
+
+local TPTab = Window:MakeTab({
+	Name = "Teleports",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = TPTab:AddSection({
+	Name = "Trading"
+})
+
+TPTab:AddButton({
+	Name = "Regular Platform",
+	Callback = function()
+      		game:GetService("Players").LocalPlayer.Character:MoveTo(Vector3.new(112, 22, -266))
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Rainbow Platform",
+	Callback = function()
+      		game:GetService("Players").LocalPlayer.Character:MoveTo(Vector3.new(0, 22, -266))
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Ghost Platform",
+	Callback = function()
+      		game:GetService("Players").LocalPlayer.Character:MoveTo(Vector3.new(141, 22, 207))
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Golden Platform",
+	Callback = function()
+      		game:GetService("Players").LocalPlayer.Character:MoveTo(Vector3.new(216, 80, 11370))
+            workspace.GoldenToilet.HitDetect:Destroy()
+  	end    
+})
+
+local MiscTab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = MiscTab:AddSection({
+	Name = "Humanoid"
+})
+
+MiscTab:AddSlider({
+	Name = "WalkSpeed",
+	Min = 16,
+	Max = 128,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "WalkSpeed",
+	Callback = function(Value)
+		game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = Value
+	end    
+})
+
+MiscTab:AddSlider({
+	Name = "JumpPower",
+	Min = 50,
+	Max = 400,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "JumpPower",
+	Callback = function(Value)
+		game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").JumpPower = Value
+        game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").JumpHeight = Value
+	end    
+})
+
+MiscTab:AddButton({
+	Name = "Humanoid V2",
+	Callback = function()
+      		local hum = game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid")
+      		hum.AutomaticScalingEnabled = false
+      		hum.HipHeight = 2
+      		hum.AutoJumpEnabled = false
+  	end    
+})
+
+local Section = MiscTab:AddSection({
+	Name = "Scripts"
+})
+
+MiscTab:AddButton({
+	Name = "Infinite Yield",
+	Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+  	end    
+})
+
+OrionLib:Init()
